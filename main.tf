@@ -124,7 +124,7 @@ resource "helm_release" "fluent_bit" {
       [OUTPUT]
           Name              cloudwatch_logs
           Match             kube.*
-          region            ${data.aws_region.current.name}
+          region            ${data.aws_region.current.region}
           log_group_name    /eks/${var.cluster_name}/application
           log_stream_prefix from-fluent-bit-
           auto_create_group false
@@ -132,7 +132,7 @@ resource "helm_release" "fluent_bit" {
       [OUTPUT]
           Name              cloudwatch_logs
           Match             host.*
-          region            ${data.aws_region.current.name}
+          region            ${data.aws_region.current.region}
           log_group_name    /eks/${var.cluster_name}/host
           log_stream_prefix from-fluent-bit-
           auto_create_group false
